@@ -1,6 +1,7 @@
 package com.mario.shopsphere.service;
 
 import com.mario.shopsphere.entity.Category;
+import com.mario.shopsphere.exception.CategoryNotFoundException;
 import com.mario.shopsphere.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
 
@@ -24,11 +25,17 @@ public class CategoryService {
     }
 
     public Category findById(Long id){
-        return categoryRepository.findById(id).orElse(null);
+
+        return categoryRepository.findById(id)
+                .orElseThrow(() -> new CategoryNotFoundException("Category with id " + id + " not found"));
     }
 
     public void deleteById(Long id){
-        categoryRepository.deleteById(id);
+        if (categoryRepository.existsById(id)){
+            categoryRepository.deleteById(id);
+            return;
+        }
+        throw new CategoryNotFoundException("Category with id " + id + " not found");
     }
 
     public Category update(Long id, Category category){
@@ -36,7 +43,7 @@ public class CategoryService {
         Category existingCategory = categoryRepository.findById(id).orElse(null);
 
         if (existingCategory == null){
-            return null;
+            throw new CategoryNotFoundException("Category with id " + id + " not found");
         }
 
         existingCategory.setName(category.getName());

@@ -2,6 +2,8 @@ package com.mario.shopsphere.service;
 
 import com.mario.shopsphere.entity.Category;
 import com.mario.shopsphere.entity.Product;
+import com.mario.shopsphere.exception.CategoryNotFoundException;
+import com.mario.shopsphere.exception.ProductNotFoundException;
 import com.mario.shopsphere.repository.CategoryRepository;
 import com.mario.shopsphere.repository.ProductRepository;
 import org.springframework.stereotype.Service;
@@ -24,7 +26,7 @@ public class ProductService {
         if (categoryRepository.existsById(product.getCategory().getId())) {
             return productRepository.save(product);
         }
-        return null;
+        throw new CategoryNotFoundException("Category with id " + product.getCategory().getId() + " not found");
     }
 
     public List<Product> findAll() {
@@ -32,14 +34,17 @@ public class ProductService {
     }
 
     public Product findById(Long id){
-        return productRepository.findById(id).orElse(null);
+        return productRepository.findById(id)
+                .orElseThrow(() -> new ProductNotFoundException("Product with id " + id + " not found"));
+
     }
 
     public void deleteById(Long id){
-        if(productRepository.existsById(id))
-        {
+        if(productRepository.existsById(id)) {
             productRepository.deleteById(id);
+            return;
         }
+        throw new ProductNotFoundException("Product with id " + id + " not found");
     }
 
     public Product update(Long id, Product product){
@@ -47,11 +52,11 @@ public class ProductService {
         Product existingProduct = productRepository.findById(id).orElse(null);
 
         if (existingProduct == null){
-            return null;
+            throw new ProductNotFoundException("Product with id " + id + " not found");
         }
 
         if (!categoryRepository.existsById(product.getCategory().getId())){
-            return null;
+            throw new CategoryNotFoundException("Category with id " + product.getCategory().getId() + " not found");
         }
 
         existingProduct.setName(product.getName());

@@ -22,6 +22,7 @@ public class Product {
     private Long id;
 
     @NotBlank
+    @Size(min = 3, max = 100)
     @Column(nullable = false, length = 100)
     private String name;
 
@@ -35,9 +36,11 @@ public class Product {
     @Column(nullable = false)
     private Integer stock;
 
+    @Size(max = 255)
     private String image;
 
     @NotBlank
+    @Size(max = 500)
     @Column(nullable = false, length = 500)
     private String description;
 

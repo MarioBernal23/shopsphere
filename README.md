@@ -4,7 +4,7 @@ ShopSphere es un proyecto personal de un e-commerce desarrollado para aprender e
 
 ## Tecnologías
 
-- Java 17
+- Java 21
 - Spring Boot
 - Spring Data JPA
 - PostgreSQL
@@ -13,7 +13,8 @@ ShopSphere es un proyecto personal de un e-commerce desarrollado para aprender e
 ## Funcionalidades actuales
 
 - Gestión de categorías (CRUD)
-- Gestión de productos (en desarrollo)
+- Gestión de productos (CRUD)
+- Gestión de excepciones
 
 ## Próximas funcionalidades
 

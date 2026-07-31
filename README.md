@@ -4,7 +4,7 @@ ShopSphere es un proyecto personal de un e-commerce desarrollado para aprender e
 
 ## Tecnologías
 
-- Java 21
+- Java 17
 - Spring Boot
 - Spring Data JPA
 - PostgreSQL

@@ -4,6 +4,7 @@ import com.mario.shopsphere.entity.User;
 import com.mario.shopsphere.exception.EmailAlreadyExistsException;
 import com.mario.shopsphere.exception.UserNotFoundException;
 import com.mario.shopsphere.repository.UserRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,9 +13,11 @@ import java.util.List;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository){
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder){
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public User save(User user){
@@ -22,6 +25,7 @@ public class UserService {
         if (userRepository.existsByEmail(user.getEmail())){
             throw new EmailAlreadyExistsException("Email is already registered");
         }
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
@@ -57,7 +61,7 @@ public class UserService {
 
         existingUser.setName(user.getName());
         existingUser.setEmail(user.getEmail());
-        existingUser.setPassword(user.getPassword());
+        existingUser.setPassword(passwordEncoder.encode(user.getPassword()));
         existingUser.setRole(user.getRole());
         return userRepository.save(existingUser);
     }

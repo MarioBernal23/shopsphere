@@ -1,5 +1,6 @@
 package com.mario.shopsphere.controller;
 
+import com.mario.shopsphere.dto.UserResponse;
 import com.mario.shopsphere.entity.User;
 import com.mario.shopsphere.service.UserService;
 import jakarta.validation.Valid;
@@ -20,18 +21,18 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
-        User savedUser = userService.save(user);
+    public ResponseEntity<UserResponse> createUser(@Valid @RequestBody User user) {
+        UserResponse savedUser = userService.save(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
     }
 
     @GetMapping
-    public ResponseEntity<List<User>> getUsers(){
+    public ResponseEntity<List<UserResponse>> getUsers(){
         return ResponseEntity.ok(userService.findAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable Long id) {
+    public ResponseEntity<UserResponse> getUserById(@PathVariable Long id) {
         return ResponseEntity.ok(userService.findById(id));
     }
 

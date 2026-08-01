@@ -1,5 +1,6 @@
 package com.mario.shopsphere.service;
 
+import com.mario.shopsphere.dto.UserResponse;
 import com.mario.shopsphere.entity.User;
 import com.mario.shopsphere.exception.EmailAlreadyExistsException;
 import com.mario.shopsphere.exception.UserNotFoundException;
@@ -7,6 +8,7 @@ import com.mario.shopsphere.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -20,22 +22,40 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public User save(User user){
+    public UserResponse save(User user){
 
         if (userRepository.existsByEmail(user.getEmail())){
             throw new EmailAlreadyExistsException("Email is already registered");
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
+        User userSaved =  userRepository.save(user);
+        return toResponse(userSaved);
     }
 
-    public List<User> findAll(){
-        return userRepository.findAll();
+    public List<UserResponse> findAll(){
+        List<User> users =  userRepository.findAll();
+        List<UserResponse> responses = new ArrayList<>();
+
+        for(User user : users) {
+            responses.add(toResponse(user));
+        }
+        return responses;
+
     }
 
-    public User findById(Long id){
-        return userRepository.findById(id)
+    public UserResponse findById(Long id){
+        User user =  userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException("User with id " + id + " not found"));
+        return  toResponse(user);
+    }
+
+    private UserResponse toResponse(User user) {
+        return new UserResponse(
+                user.getId(),
+                user.getName(),
+                user.getEmail(),
+                user.getRole()
+        );
     }
 
     public void delete(Long id){

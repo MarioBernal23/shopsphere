@@ -66,7 +66,7 @@ public class UserService {
         throw new UserNotFoundException("User with id " + id + " not found");
     }
 
-    public User update(Long id, User user){
+    public UserResponse update(Long id, User user){
 
         User existingUser = userRepository.findById(id).orElse(null);
 
@@ -83,6 +83,8 @@ public class UserService {
         existingUser.setEmail(user.getEmail());
         existingUser.setPassword(passwordEncoder.encode(user.getPassword()));
         existingUser.setRole(user.getRole());
-        return userRepository.save(existingUser);
+
+        User userSaved = userRepository.save(existingUser);
+        return toResponse(userSaved);
     }
 }

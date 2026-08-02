@@ -1,5 +1,6 @@
 package com.mario.shopsphere.controller;
 
+import com.mario.shopsphere.dto.CategoryResponse;
 import com.mario.shopsphere.entity.Category;
 import com.mario.shopsphere.service.CategoryService;
 import jakarta.validation.Valid;
@@ -20,28 +21,34 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<Category> createCategory(@Valid @RequestBody Category category) {
-        Category savedCategory = categoryService.save(category);
+    public ResponseEntity<CategoryResponse> createCategory(
+            @Valid @RequestBody Category category) {
+
+        CategoryResponse savedCategory = categoryService.save(category);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedCategory);
     }
 
     @GetMapping
-    public ResponseEntity<List<Category>> getCategories() {
+    public ResponseEntity<List<CategoryResponse>> getCategories() {
         return ResponseEntity.ok(categoryService.findAll());
     }
 
     @GetMapping("/{id}")
-    public Category getCategoryById(@PathVariable Long id) {
-        return categoryService.findById(id);
+    public ResponseEntity<CategoryResponse> getCategoryById(@PathVariable Long id) {
+        return ResponseEntity.ok(categoryService.findById(id));
     }
 
     @DeleteMapping("/{id}")
-    public void deleteCategoryById(@PathVariable Long id){
+    public ResponseEntity<Void> deleteCategoryById(@PathVariable Long id) {
         categoryService.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/{id}")
-    public Category updateCategory(@PathVariable Long id, @RequestBody Category category) {
-        return categoryService.update(id, category);
+    public ResponseEntity<CategoryResponse> updateCategory(
+            @PathVariable Long id,
+            @Valid @RequestBody Category category) {
+
+        return ResponseEntity.ok(categoryService.update(id, category));
     }
 }

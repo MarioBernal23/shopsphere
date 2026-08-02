@@ -40,39 +40,20 @@ public class UserService {
             responses.add(toResponse(user));
         }
         return responses;
-
     }
 
     public UserResponse findById(Long id){
-        User user =  userRepository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException("User with id " + id + " not found"));
-        return  toResponse(user);
-    }
-
-    private UserResponse toResponse(User user) {
-        return new UserResponse(
-                user.getId(),
-                user.getName(),
-                user.getEmail(),
-                user.getRole()
-        );
+        return  toResponse(getUser(id));
     }
 
     public void delete(Long id){
-        if (userRepository.existsById(id)){
-            userRepository.deleteById(id);
-            return;
-        }
-        throw new UserNotFoundException("User with id " + id + " not found");
+        User user = getUser(id);
+        userRepository.delete(user);
     }
 
     public UserResponse update(Long id, User user){
 
-        User existingUser = userRepository.findById(id).orElse(null);
-
-        if (existingUser == null){
-            throw new UserNotFoundException("User with id " + id + " not found");
-        }
+        User existingUser = getUser(id);
 
         if (!existingUser.getEmail().equals(user.getEmail())
                 && userRepository.existsByEmail(user.getEmail())) {
@@ -86,5 +67,20 @@ public class UserService {
 
         User userSaved = userRepository.save(existingUser);
         return toResponse(userSaved);
+    }
+
+    private User getUser(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() ->
+                        new UserNotFoundException("User with id " + id + " not found"));
+    }
+
+    private UserResponse toResponse(User user) {
+        return new UserResponse(
+                user.getId(),
+                user.getName(),
+                user.getEmail(),
+                user.getRole()
+        );
     }
 }

@@ -1,5 +1,6 @@
 package com.mario.shopsphere.service;
 
+import com.mario.shopsphere.dto.ProductResponse;
 import com.mario.shopsphere.entity.Category;
 import com.mario.shopsphere.entity.Product;
 import com.mario.shopsphere.exception.CategoryNotFoundException;
@@ -8,6 +9,7 @@ import com.mario.shopsphere.repository.CategoryRepository;
 import com.mario.shopsphere.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,51 +23,71 @@ public class ProductService {
         this.categoryRepository = categoryRepository;
     }
 
-    public Product save(Product product) {
+    public ProductResponse save(Product product) {
 
-        if (categoryRepository.existsById(product.getCategory().getId())) {
-            return productRepository.save(product);
+        Category category = getCategory(product.getCategory().getId());
+
+        product.setCategory(category);
+
+        Product saved = productRepository.save(product);
+        return toResponse(saved);
+    }
+
+    public List<ProductResponse> findAll() {
+        List<Product> products =  productRepository.findAll();
+        List<ProductResponse> responses = new ArrayList<>();
+
+        for(Product product : products) {
+            responses.add(toResponse(product));
         }
-        throw new CategoryNotFoundException("Category with id " + product.getCategory().getId() + " not found");
+        return responses;
     }
 
-    public List<Product> findAll() {
-        return productRepository.findAll();
-    }
-
-    public Product findById(Long id){
-        return productRepository.findById(id)
-                .orElseThrow(() -> new ProductNotFoundException("Product with id " + id + " not found"));
+    public ProductResponse findById(Long id){
+        return toResponse(getProduct(id));
 
     }
 
     public void deleteById(Long id){
-        if(productRepository.existsById(id)) {
-            productRepository.deleteById(id);
-            return;
-        }
-        throw new ProductNotFoundException("Product with id " + id + " not found");
+        Product product = getProduct(id);
+        productRepository.delete(product);
     }
 
-    public Product update(Long id, Product product){
+    public ProductResponse update(Long id, Product product){
 
-        Product existingProduct = productRepository.findById(id).orElse(null);
-
-        if (existingProduct == null){
-            throw new ProductNotFoundException("Product with id " + id + " not found");
-        }
-
-        if (!categoryRepository.existsById(product.getCategory().getId())){
-            throw new CategoryNotFoundException("Category with id " + product.getCategory().getId() + " not found");
-        }
+        Product existingProduct = getProduct(id);
+        Category category = getCategory(product.getCategory().getId());
 
         existingProduct.setName(product.getName());
         existingProduct.setDescription(product.getDescription());
         existingProduct.setPrice(product.getPrice());
         existingProduct.setImage(product.getImage());
         existingProduct.setStock(product.getStock());
-        existingProduct.setCategory(product.getCategory());
+        existingProduct.setCategory(category);
 
-        return productRepository.save(existingProduct);
+        return toResponse(productRepository.save(existingProduct));
+    }
+
+    private ProductResponse toResponse(Product product) {
+        return new ProductResponse(
+                product.getId(),
+                product.getName(),
+                product.getDescription(),
+                product.getPrice(),
+                product.getImage(),
+                product.getStock(),
+                product.getCategory().getName()
+        );
+    }
+
+    private Product getProduct(Long id) {
+        return productRepository.findById(id)
+                .orElseThrow(() -> new ProductNotFoundException("Product with id " + id + " not found"));
+    }
+
+    private Category getCategory(Long id) {
+        return categoryRepository.findById(id)
+                .orElseThrow(() ->
+                        new CategoryNotFoundException("Category with id " + id + " not found"));
     }
 }

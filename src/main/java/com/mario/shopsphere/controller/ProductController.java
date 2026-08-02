@@ -1,5 +1,6 @@
 package com.mario.shopsphere.controller;
 
+import com.mario.shopsphere.dto.ProductResponse;
 import com.mario.shopsphere.entity.Product;
 import com.mario.shopsphere.service.ProductService;
 import jakarta.validation.Valid;
@@ -20,28 +21,32 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<Product> createProduct(@Valid @RequestBody Product product) {
-        Product savedProduct = productService.save(product);
+    public ResponseEntity<ProductResponse> createProduct(@Valid @RequestBody Product product) {
+        ProductResponse savedProduct = productService.save(product);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedProduct);
     }
 
     @GetMapping
-    public ResponseEntity<List<Product>> getProducts() {
+    public ResponseEntity<List<ProductResponse>> getProducts() {
         return ResponseEntity.ok(productService.findAll());
     }
 
     @GetMapping("/{id}")
-    public Product getProductById(@PathVariable Long id) {
-        return productService.findById(id);
+    public ResponseEntity<ProductResponse> getProductById(@PathVariable Long id) {
+        return ResponseEntity.ok(productService.findById(id));
     }
 
     @DeleteMapping("/{id}")
-    public void deleteProductById(@PathVariable Long id){
+    public ResponseEntity<Void> deleteProductById(@PathVariable Long id) {
         productService.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/{id}")
-    public Product updateProduct(@PathVariable Long id, @Valid @RequestBody Product product) {
-        return productService.update(id, product);
+    public ResponseEntity<ProductResponse> updateProduct(
+            @PathVariable Long id,
+            @Valid @RequestBody Product product) {
+
+        return ResponseEntity.ok(productService.update(id, product));
     }
 }

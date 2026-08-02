@@ -6,7 +6,6 @@ import com.mario.shopsphere.entity.User;
 import com.mario.shopsphere.exception.InvalidCredentialsException;
 import com.mario.shopsphere.exception.UserNotFoundException;
 import com.mario.shopsphere.repository.UserRepository;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -25,14 +24,19 @@ public class AuthService {
 
     public LoginResponse login(LoginRequest loginRequest) {
 
-        User existingUser = userRepository.findByEmail(loginRequest.getEmail())
-                .orElseThrow(() -> new UserNotFoundException("User not found"));
+        User user = getUserByEmail(loginRequest.getEmail());
 
-        if (!passwordEncoder.matches(loginRequest.getPassword(), existingUser.getPassword())) {
+        if (!passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
             throw new InvalidCredentialsException("Invalid email or password");
         }
 
-        String token = jwtService.generateToken(existingUser);
+        String token = jwtService.generateToken(user);
         return new LoginResponse(token);
+    }
+
+    private User getUserByEmail(String email) {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() ->
+                        new UserNotFoundException("User not found"));
     }
 }

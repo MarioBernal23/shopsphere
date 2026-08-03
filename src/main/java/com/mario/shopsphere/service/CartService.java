@@ -103,7 +103,11 @@ public class CartService {
         return toResponse(cart);
     }
 
-    private BigDecimal calculateTotal(Cart cart) {
+    public Cart getCart(User user) {
+        return getOrCreateCart(user);
+    }
+
+    public BigDecimal calculateTotal(Cart cart) {
         BigDecimal total = BigDecimal.ZERO;
 
         for(CartItem cartItem : cart.getItems()) {

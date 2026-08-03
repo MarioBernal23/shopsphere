@@ -4,13 +4,16 @@ import { Route, Routes } from 'react-router-dom'
 
 import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
+import Layout from './components/Layout'
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route index element={<HomePage />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route element={<Layout />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   )

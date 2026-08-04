@@ -1,21 +1,23 @@
 import { useState } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import { Route, Routes } from 'react-router-dom'
-
+import AuthenticationProvider from './context/AuthenticationContext'
 import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
 import Layout from './components/Layout'
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <AuthenticationProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<LoginPage />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </AuthenticationProvider>
   )
 }
 

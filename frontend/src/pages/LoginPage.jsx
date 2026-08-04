@@ -1,7 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthenticationContext } from "../context/AuthenticationContext";
 import authService from "../services/authService";
 
 function LoginPage() {
+
+  const navigate = useNavigate();
+  const { login } = useContext(AuthenticationContext);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,11 +24,10 @@ function LoginPage() {
     event.preventDefault();
     const response = await authService.login(email, password);
 
-    localStorage.setItem(
-    "token",
-    response.token
-);
+    login(response.token)
+    navigate("/");
   }
+  
   return (
     <div>
       <h2>Login</h2>

@@ -1,11 +1,17 @@
 import { Link } from "react-router-dom"
 import { useContext } from "react"
 import { AuthenticationContext } from "../context/AuthenticationContext"
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
 
-    const { authenticated } = useContext(AuthenticationContext);
-    
+    const { authenticated, logout } = useContext(AuthenticationContext);
+    const navigate = useNavigate();
+
+    function handleLogout() {
+        logout()
+        navigate("/")
+    }
     return (
         <nav>
             <div><Link to="/"><h2>ShopSphere</h2></Link></div>
@@ -13,12 +19,11 @@ function Navbar() {
                 <Link to="/">Home</Link>
                 {
                     authenticated ? (
-                        <Link to ="/">Logout</Link>
+                        <button onClick={handleLogout}>Logout</button>
                     ) : (
                         <Link to="/login">Login</Link>
                     )
                 }
-
             </div>
         </nav>
     )

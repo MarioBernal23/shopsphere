@@ -16,15 +16,18 @@ function AuthenticationProvider({children}) {
         }
     }, []);
 
-
-
     function login(token) {
-        localStorage.setItem("token", token);
-        setAuthenticated(true);
+    localStorage.setItem("token", token);
+    setAuthenticated(true);
+    }
+
+    function logout() {
+        localStorage.removeItem("token");
+        setAuthenticated(false);
     }
 
     return (
-        <AuthenticationContext.Provider value={{ authenticated, login }}>
+        <AuthenticationContext.Provider value={{ authenticated, login, logout }}>
             {children}
         </AuthenticationContext.Provider>
     );

@@ -19,7 +19,10 @@ function Navbar() {
                 <Link to="/">Home</Link>
                 {
                     authenticated ? (
-                        <button onClick={handleLogout}>Logout</button>
+                        <div>
+                            <Link to="/products">Products</Link>
+                            <button onClick={handleLogout}>Logout</button>
+                        </div>
                     ) : (
                         <Link to="/login">Login</Link>
                     )

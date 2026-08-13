@@ -15,6 +15,21 @@ async function getProducts() {
     return response.data;
 }
 
+async function getProductById(id) {
+    const token = localStorage.getItem("token");
+
+    const response = await axios.get(
+        `http://localhost:8080/products/${id}`,
+        {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+    );
+    return response.data;
+}
+
 export default {
-    getProducts
+    getProducts,
+    getProductById
 };

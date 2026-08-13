@@ -7,7 +7,6 @@ function ProductPage() {
 
     const [products, setProducts] = useState([])
 
-    console.log(products);
     useEffect(() => {
         async function loadProducts() {
             const products = await productService.getProducts();

@@ -21,6 +21,7 @@ function Navbar() {
                     authenticated ? (
                         <div>
                             <Link to="/products">Products</Link>
+                            <Link to="/cart">Mi Carrito</Link>
                             <button onClick={handleLogout}>Logout</button>
                         </div>
                     ) : (

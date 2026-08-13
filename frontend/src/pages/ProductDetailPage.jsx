@@ -2,12 +2,16 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import productService from "../services/productService";
+import cartService from "../services/cartService";
 
 function ProductDetailPage() {
     const { id } = useParams();
 
     const [product, setProduct] = useState(null);
 
+    async function handleAddToCart() {
+        await cartService.addItem(product.id);
+    }
     useEffect(() => {
         async function loadProduct() {
             const product = await productService.getProductById(id);
@@ -28,6 +32,9 @@ function ProductDetailPage() {
             <p>{product.price} €</p>
             <p>{product.categoryName}</p>
             <p>Stock: {product.stock}</p>
+            <button onClick={handleAddToCart}>
+            Añadir al carrito
+            </button>
         </div>
     );
 }

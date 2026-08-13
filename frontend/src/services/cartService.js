@@ -15,6 +15,23 @@ async function getCart() {
     return response.data;
 }
 
+async function addItem(id) {
+
+    const token = localStorage.getItem("token");
+
+    const response = await axios.post(`http://localhost:8080/cart/products/${id}`,
+        null,
+        {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+    );
+    
+    return response.data;
+}
+
 export default {
-    getCart
+    getCart,
+    addItem
 };

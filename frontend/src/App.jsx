@@ -8,6 +8,8 @@ import Layout from './components/Layout'
 import ProductPage from './pages/ProductPage'
 import ProductDetailPage from "./pages/ProductDetailPage";
 import CartPage from './pages/CartPage'
+import OrderPage from './pages/OrderPage'
+import OrderDetailPage from './pages/OrderDetailPage'
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
             <Route path="/products" element={<ProductPage />} />
             <Route path="/products/:id" element={<ProductDetailPage />} />
             <Route path="/cart" element={<CartPage />} />
+            <Route path="/orders" element={<OrderPage />} />
+            <Route path="/orders/:id" element={<OrderDetailPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

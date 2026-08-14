@@ -22,6 +22,7 @@ function Navbar() {
                         <div>
                             <Link to="/products">Products</Link>
                             <Link to="/cart">Mi Carrito</Link>
+                            <Link to="/orders">Mis pedidos</Link>
                             <button onClick={handleLogout}>Logout</button>
                         </div>
                     ) : (

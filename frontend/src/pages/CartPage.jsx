@@ -2,11 +2,13 @@ import { useState } from "react";
 import { useEffect } from "react";
 import cartService from "../services/cartService";
 import CartItem from "../components/CartItem";
+import orderService from "../services/orderService";
+import { useNavigate } from "react-router-dom";
 
 function CartPage() {
 
     const [cart, setCart] = useState(null)
-
+    const navigate = useNavigate()
     useEffect(() => {
         async function loadCart() {
             const cart = await cartService.getCart();
@@ -28,8 +30,12 @@ function CartPage() {
 
     async function handleClear() {
         const cart = await cartService.clearCart();
-        console.log("Carrito después de limpiar:", cart);
         setCart(cart);
+    }
+
+    async function handleBuy() {
+        await orderService.createOrder()
+        navigate("/orders");
     }
 
     if (!cart) {
@@ -56,8 +62,12 @@ function CartPage() {
 
         <h3>Total: {cart.total} €</h3>
         
+        <button onClick={handleBuy}>
+            Comprar los productos
+        </button>
+
         <button onClick={handleClear}>
-            Limpiar Carrito
+            Limpiar carrito
         </button>
         </div>
     );

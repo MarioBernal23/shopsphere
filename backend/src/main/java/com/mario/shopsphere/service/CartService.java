@@ -12,6 +12,7 @@ import com.mario.shopsphere.exception.ProductNotFoundException;
 import com.mario.shopsphere.repository.CartItemRepository;
 import com.mario.shopsphere.repository.CartRepository;
 import com.mario.shopsphere.repository.ProductRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -94,6 +95,7 @@ public class CartService {
         return toResponse(cart);
     }
 
+    @Transactional
     public CartResponse clearCart(User user) {
         Cart cart = getOrCreateCart(user);
 

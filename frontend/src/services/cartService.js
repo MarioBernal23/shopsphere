@@ -31,7 +31,52 @@ async function addItem(id) {
     return response.data;
 }
 
+async function updateItem(id, quantity) {
+    const token = localStorage.getItem("token");
+
+    const response = await axios.put(`http://localhost:8080/cart/products/${id}?quantity=${quantity}`,
+        null,
+        {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+    );
+    
+    return response.data;
+}
+
+async function deleteItem(id) {
+    const token = localStorage.getItem("token");
+
+    const response = await axios.delete(`http://localhost:8080/cart/products/${id}`,
+        {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+    );
+    
+    return response.data;
+}
+
+async function clearCart() {
+    const token = localStorage.getItem("token");
+
+    const response = await axios.delete(`http://localhost:8080/cart`,
+        {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+    );
+    
+    return response.data;
+}
 export default {
     getCart,
-    addItem
+    addItem,
+    updateItem,
+    deleteItem,
+    clearCart
 };

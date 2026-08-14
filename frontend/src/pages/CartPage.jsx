@@ -16,6 +16,22 @@ function CartPage() {
         loadCart();
     }, []);
 
+    async function handleUpdate(productId, quantity) {
+        const cart = await cartService.updateItem(productId, quantity);
+        setCart(cart);
+    }
+
+    async function handleDelete(productId) {
+        const cart = await cartService.deleteItem(productId);
+        setCart(cart);
+    }
+
+    async function handleClear() {
+        const cart = await cartService.clearCart();
+        console.log("Carrito después de limpiar:", cart);
+        setCart(cart);
+    }
+
     if (!cart) {
         return <p>Cargando...</p>;
     }
@@ -32,12 +48,17 @@ function CartPage() {
                     <CartItem 
                         key={item.productId}
                         item={item}
+                        onUpdate={handleUpdate}
+                        onDelete={handleDelete}
                     />
                 ))
             }
 
         <h3>Total: {cart.total} €</h3>
-
+        
+        <button onClick={handleClear}>
+            Limpiar Carrito
+        </button>
         </div>
     );
 }

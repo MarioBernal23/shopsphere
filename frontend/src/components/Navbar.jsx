@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 function Navbar() {
 
-    const { authenticated, logout } = useContext(AuthenticationContext);
+    const { authenticated, role, logout } = useContext(AuthenticationContext);
     const navigate = useNavigate();
 
     function handleLogout() {
@@ -23,6 +23,11 @@ function Navbar() {
                             <Link to="/products">Products</Link>
                             <Link to="/cart">Mi Carrito</Link>
                             <Link to="/orders">Mis pedidos</Link>
+                             {
+                                role === "ADMIN" && (
+                                    <Link to="/admin">Admin</Link>
+                                )
+                            }
                             <button onClick={handleLogout}>Logout</button>
                         </div>
                     ) : (

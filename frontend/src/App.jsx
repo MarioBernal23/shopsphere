@@ -10,6 +10,8 @@ import ProductDetailPage from "./pages/ProductDetailPage";
 import CartPage from './pages/CartPage'
 import OrderPage from './pages/OrderPage'
 import OrderDetailPage from './pages/OrderDetailPage'
+import AdminPage from './pages/AdminPage'
+import AdminUsersPage from './pages/AdminUsersPage'
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
             <Route path="/cart" element={<CartPage />} />
             <Route path="/orders" element={<OrderPage />} />
             <Route path="/orders/:id" element={<OrderDetailPage />} />
+            <Route path="/admin" element={<AdminPage />} />
+            <Route path="/admin/users" element={<AdminUsersPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

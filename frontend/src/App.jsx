@@ -12,6 +12,8 @@ import OrderPage from './pages/OrderPage'
 import OrderDetailPage from './pages/OrderDetailPage'
 import AdminPage from './pages/AdminPage'
 import AdminUsersPage from './pages/AdminUsersPage'
+import AdminProductPage from './pages/AdminProductPage'
+import AdminCategoriesPage from './pages/AdminCategoriesPage'
 
 function App() {
   return (
@@ -28,6 +30,8 @@ function App() {
             <Route path="/orders/:id" element={<OrderDetailPage />} />
             <Route path="/admin" element={<AdminPage />} />
             <Route path="/admin/users" element={<AdminUsersPage />} />
+            <Route path="/admin/products" element={<AdminProductPage/>} />
+            <Route path="/admin/categories" element={<AdminCategoriesPage/>} />
           </Route>
         </Routes>
       </BrowserRouter>

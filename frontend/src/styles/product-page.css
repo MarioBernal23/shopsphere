@@ -1,0 +1,22 @@
+.product-page h2 {
+    font-size: 36px;
+    font-weight: 500;
+    color: #111111;
+    margin: 0 0 30px;
+    position: relative;
+}
+
+.product-page h2::after {
+    content: "";
+    display:block;
+    width: 180px;
+    height:2px;
+    background-color: #dddddd;
+    margin-top: 6px;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}

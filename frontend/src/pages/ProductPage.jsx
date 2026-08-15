@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import productService from "../services/productService";
 import Product from "../components/Product";
+import "../styles/product-page.css"
 
 function ProductPage() {
 
@@ -16,16 +17,18 @@ function ProductPage() {
     }, []);
 
      return (
-        <div>
+        <div className="product-page">
             <h2>Products</h2>
-            {
-                products.map(product => (
-                    <Product
-                        key={product.id}
-                        product={product}
-                    />
-                ))
-            }
+            <div className="products-grid">
+                {
+                    products.map(product => (
+                        <Product
+                            key={product.id}
+                            product={product}
+                        />
+                    ))
+                }
+            </div>
         </div>
     );
 }

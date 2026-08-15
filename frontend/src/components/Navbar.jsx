@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import { useContext } from "react"
 import { AuthenticationContext } from "../context/AuthenticationContext"
 import { useNavigate } from "react-router-dom";
-
+import "../styles/navbar.css";
 function Navbar() {
 
     const { authenticated, role, logout } = useContext(AuthenticationContext);
@@ -13,16 +13,16 @@ function Navbar() {
         navigate("/")
     }
     return (
-        <nav>
+        <nav className="navbar">
             <div><Link to="/"><h2>ShopSphere</h2></Link></div>
-            <div>
+            <div className="navbar-links">
                 <Link to="/">Home</Link>
                 {
                     authenticated ? (
-                        <div>
+                        <div className="navbar-actions">
                             <Link to="/products">Products</Link>
-                            <Link to="/cart">Mi Carrito</Link>
-                            <Link to="/orders">Mis pedidos</Link>
+                            <Link to="/cart">My Cart</Link>
+                            <Link to="/orders">My Orders</Link>
                              {
                                 role === "ADMIN" && (
                                     <Link to="/admin">Admin</Link>

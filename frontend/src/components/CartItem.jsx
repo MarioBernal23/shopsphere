@@ -1,26 +1,37 @@
+import "../styles/cart-item.css"
 
 function CartItem({ item, onUpdate, onDelete }) {
-    return(
-        <div>
-            <h3>{item.productName}</h3>
-            <p>Precio: {item.price} €</p>
-            <p>Cantidad: {item.quantity}</p>
-            <p>Subtotal: {item.subtotal} €</p>
+    return (
+        <div className="cart-item">
+            <div className="cart-item-info">
+                <h3>{item.productName}</h3>
+                <p>Price: {item.price} €</p>
+            </div>
 
-            <button onClick={() => onUpdate(item.productId, item.quantity - 1)}>
-                -
-            </button>
+            <div className="cart-item-quantity">
+                <button onClick={() => onUpdate(item.productId, item.quantity - 1)}>
+                    -
+                </button>
 
-            <button onClick={() => onUpdate(item.productId, item.quantity + 1)}>
-                +
-            </button>
+                <span>{item.quantity}</span>
 
-            <button onClick={() => onDelete(item.productId)}>
-                Eliminar
+                <button onClick={() => onUpdate(item.productId, item.quantity + 1)}>
+                    +
+                </button>
+            </div>
+
+            <p className="cart-item-subtotal">
+                {item.subtotal} €
+            </p>
+
+            <button
+                className="cart-item-delete"
+                onClick={() => onDelete(item.productId)}
+            >
+                Delete
             </button>
-            
         </div>
-    )
+    );
 }
 
 export default CartItem;

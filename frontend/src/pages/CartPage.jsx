@@ -4,6 +4,7 @@ import cartService from "../services/cartService";
 import CartItem from "../components/CartItem";
 import orderService from "../services/orderService";
 import { useNavigate } from "react-router-dom";
+import "../styles/cart-page.css"
 
 function CartPage() {
 
@@ -39,16 +40,15 @@ function CartPage() {
     }
 
     if (!cart) {
-        return <p>Cargando...</p>;
+        return <p>Loading...</p>;
     }
 
     return (
-        <div>
-            <h2>Mi carrito</h2>
+        <div className="cart-page">
+            <h2>Shopping Cart</h2>
 
-            <p>ID del Carrito: {cart.id}</p> 
-            <h3>Productos</h3>
-
+            <h3>Products</h3>
+            <div className="cart-product-grid">
             {
                 cart.items.map(item => (
                     <CartItem 
@@ -59,15 +59,16 @@ function CartPage() {
                     />
                 ))
             }
+            </div>
 
         <h3>Total: {cart.total} €</h3>
         
         <button onClick={handleBuy}>
-            Comprar los productos
+            Place Order
         </button>
 
         <button onClick={handleClear}>
-            Limpiar carrito
+            Clear Cart
         </button>
         </div>
     );

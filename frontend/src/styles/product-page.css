@@ -9,7 +9,7 @@
 .product-page h2::after {
     content: "";
     display:block;
-    width: 180px;
+    width: 120px;
     height:2px;
     background-color: #dddddd;
     margin-top: 6px;

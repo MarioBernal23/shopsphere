@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import orderService from "../services/orderService";
 import Order from "../components/Order"
+import "../styles/order-page.css"
 
 function OrderPage() {
 
@@ -16,7 +17,7 @@ function OrderPage() {
     },[])
 
     return (
-        <div>
+        <div className="order-page">
             <h2>Mis pedidos</h2>
             {
                 orders.map(order => (

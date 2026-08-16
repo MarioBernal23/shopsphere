@@ -1,0 +1,50 @@
+.order {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr auto;
+    align-items: center;
+    gap: 30px;
+    padding: 20px;
+    background-color: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 10px;
+}
+
+.order-info h3{
+    margin: 0 0 8px;
+    font-size: 24px;
+    font-weight: 500;
+    color: #111111;
+}
+
+.order-info p{
+    font-size: 18px;
+    font-weight: 400;
+    color: #777777;
+}
+
+.order-status {
+    font-size: 20px;
+    font-weight: 500;
+    color: #111111;
+}
+
+.order-date {
+    font-size: 18px;
+    font-weight: 500;
+    color: #777777;
+}
+
+.order-details {
+    background-color: #111111;
+    color: #FFFFFF;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration:none;
+    font-size: 16px;
+    transition: background-color 200ms;
+    cursor: pointer;
+}
+
+.order-details:hover {
+    background-color: #333333;
+}

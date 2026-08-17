@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../styles/user.css"
 
 function User({ user, onDelete, onUpdate }) {
 
@@ -23,18 +24,29 @@ function User({ user, onDelete, onUpdate }) {
     }
 
     return (
-        <div>
-            <h3>{user.name}</h3>
-            <p>Email: {user.email}</p>
-            <p>Rol: {user.role}</p>
+        <div className="user">
+            <div className="user-info">
+                <h3>{user.name}</h3>
+                <p>Email: {user.email}</p>
+            </div>
 
-            <button onClick={() => setEditing(true)}>
-                Editar
-            </button>
+            <p className="user-role">Role: {user.role}</p>
 
-            <button onClick={() => onDelete(user.id)}>
-                Eliminar
-            </button>
+            <div className="user-actions">
+                <button
+                    className="user-edit"
+                    onClick={() => setEditing(true)}
+                >
+                    Edit
+                </button>
+
+                <button
+                    className="user-delete"
+                    onClick={() => onDelete(user.id)}
+                >
+                    Delete
+                </button>
+            </div>
 
             {
                 editing && (
@@ -53,7 +65,7 @@ function User({ user, onDelete, onUpdate }) {
                             type="password"
                             value={password}
                             onChange={(event) => setPassword(event.target.value)}
-                            placeholder="Nueva contraseña"
+                            placeholder="New password"
                         />
 
                         <select
@@ -65,14 +77,14 @@ function User({ user, onDelete, onUpdate }) {
                         </select>
 
                         <button type="submit">
-                            Guardar
+                            Save
                         </button>
 
                         <button
                             type="button"
                             onClick={() => setEditing(false)}
                         >
-                            Cancelar
+                            Cancel
                         </button>
                     </form>
                 )

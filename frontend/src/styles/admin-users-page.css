@@ -1,0 +1,106 @@
+.admin-users-page {
+    width: 100%;
+}
+
+
+.admin-users-page h2 {
+    font-size: 36px;
+    font-weight: 500;
+    color: #111111;
+    margin: 0 0 30px;
+    position: relative;
+}
+
+
+.admin-users-page h2::after {
+    content: "";
+    display: block;
+    width: 240px;
+    height: 2px;
+    background-color: #DDDDDD;
+    margin-top: 6px;
+}
+
+
+.admin-users-page > button {
+    padding: 12px 24px;
+    margin-bottom: 30px;
+    background-color: #111111;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 200ms;
+    cursor: pointer;
+}
+
+
+.admin-users-page > button:hover {
+    background-color: #333333;
+}
+
+
+.admin-users-page form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+    padding: 25px;
+    margin-bottom: 30px;
+    background-color: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 10px;
+}
+
+
+.admin-users-page form input,
+.admin-users-page form select {
+    padding: 12px 14px;
+    background-color: #FFFFFF;
+    color: #111111;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 400;
+    outline: none;
+}
+
+
+.admin-users-page form input:focus,
+.admin-users-page form select:focus {
+    border-color: #999999;
+}
+
+
+.admin-users-page form button {
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+
+.admin-users-page form button[type="submit"] {
+    background-color: #111111;
+    color: #FFFFFF;
+    border: none;
+}
+
+
+.admin-users-page form button[type="submit"]:hover {
+    background-color: #333333;
+}
+
+
+.admin-users-page form button[type="button"] {
+    background-color: #FFFFFF;
+    color: #111111;
+    border: 1px solid #DDDDDD;
+}
+
+
+.admin-users-page form button[type="button"]:hover {
+    background-color: #F5F5F5;
+}

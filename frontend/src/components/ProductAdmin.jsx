@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../styles/admin-product.css"
 
 function ProductAdmin({ product, categories, onDelete, onUpdate }) {
 
@@ -29,20 +30,35 @@ function ProductAdmin({ product, categories, onDelete, onUpdate }) {
     }
 
     return (
-        <div>
-            <h3>{product.name}</h3>
-            <p>Descripción: {product.description}</p>
-            <p>Precio: {product.price} €</p>
-            <p>Stock: {product.stock}</p>
-            <p>Categoría: {product.categoryName}</p>
+        <div className="admin-product">
+            <div className="admin-product-info">
+                <h3>{product.name}</h3>
+                <p>Description: {product.description}</p>
+            </div>
 
-            <button onClick={() => setEditing(true)}>
-                Editar
-            </button>
+            <p className="admin-product-price">Price: {product.price} €</p>
 
-            <button onClick={() => onDelete(product.id)}>
-                Eliminar
-            </button>
+            <p className="admin-product-stock">Stock: {product.stock}</p>
+
+            <p className="admin-product-category">
+                Category: {product.categoryName}
+            </p>
+
+            <div className="admin-product-actions">
+                <button
+                    className="admin-product-edit"
+                    onClick={() => setEditing(true)}
+                >
+                    Edit
+                </button>
+
+                <button
+                    className="admin-product-delete"
+                    onClick={() => onDelete(product.id)}
+                >
+                    Delete
+                </button>
+            </div>
 
             {
                 editing && (
@@ -93,14 +109,14 @@ function ProductAdmin({ product, categories, onDelete, onUpdate }) {
                         </select>
 
                         <button type="submit">
-                            Guardar
+                            Save
                         </button>
 
                         <button
                             type="button"
                             onClick={() => setEditing(false)}
                         >
-                            Cancelar
+                            Cancel
                         </button>
 
                     </form>

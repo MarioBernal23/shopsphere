@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import categoryService from "../services/categoryService";
 import Category from "../components/Category";
+import "../styles/admin-categories-page.css"
 
 function AdminCategoriesPage() {
 
@@ -39,7 +40,7 @@ function AdminCategoriesPage() {
             setCategories(categories);
 
         } catch (error) {
-            alert("No se puede eliminar una categoría que tiene productos asociados");
+            alert("This category cannot be deleted because it has associated products.");
         }
     }
 
@@ -51,11 +52,11 @@ function AdminCategoriesPage() {
     }
 
     return (
-        <div>
-            <h2>Gestionar categorías</h2>
+        <div className="admin-categories-page">
+            <h2>Manage categories</h2>
 
             <button onClick={() => setCreating(true)}>
-                Crear categoría
+                Create category
             </button>
 
             {
@@ -64,20 +65,20 @@ function AdminCategoriesPage() {
 
                         <input
                             type="text"
-                            placeholder="Nombre"
+                            placeholder="Name"
                             value={name}
                             onChange={(event) => setName(event.target.value)}
                         />
 
                         <button type="submit">
-                            Crear
+                            Create
                         </button>
 
                         <button
                             type="button"
                             onClick={() => setCreating(false)}
                         >
-                            Cancelar
+                            Cancel
                         </button>
 
                     </form>

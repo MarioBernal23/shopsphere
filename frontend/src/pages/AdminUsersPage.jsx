@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import userService from "../services/userService";
 import User from "../components/User";
+import "../styles/admin-users-page.css"
 
 function AdminUsersPage() {
 
@@ -56,11 +57,11 @@ function AdminUsersPage() {
     }
 
     return (
-        <div>
-            <h2>Gestionar usuarios</h2>
+        <div className="admin-users-page">
+            <h2>Manage Users</h2>
 
             <button onClick={() => setCreating(true)}>
-                Crear usuario
+                Create user
             </button>
             {
             creating && (
@@ -68,7 +69,7 @@ function AdminUsersPage() {
 
                     <input
                         type="text"
-                        placeholder="Nombre"
+                        placeholder="Name"
                         value={name}
                         onChange={(event) => setName(event.target.value)}
                     />
@@ -96,14 +97,14 @@ function AdminUsersPage() {
                     </select>
 
                     <button type="submit">
-                        Crear
+                        Create
                     </button>
 
                     <button
                         type="button"
                         onClick={() => setCreating(false)}
                     >
-                        Cancelar
+                        Cancel
                     </button>
 
                 </form>

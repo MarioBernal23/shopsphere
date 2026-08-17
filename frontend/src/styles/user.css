@@ -1,0 +1,75 @@
+.user {
+    display: grid;
+    grid-template-columns: 2fr 2fr auto;
+    align-items: center;
+    gap: 30px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+
+.user-info h3 {
+    margin: 0 0 8px;
+    font-size: 20px;
+    font-weight: 500;
+    color: #111111;
+}
+
+
+.user-info p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 400;
+    color: #777777;
+}
+
+
+.user-role {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+    color: #111111;
+}
+
+
+.user-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.user-actions button {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 200ms;
+    white-space: nowrap;
+}
+
+.user-edit {
+    background-color: #111111;
+    color: #FFFFFF;
+    border: none;
+}
+
+
+.user-edit:hover {
+    background-color: #333333;
+}
+
+
+.user-delete {
+    background-color: #FFFFFF;
+    color: #111111;
+    border: 1px solid #DDDDDD;
+}
+
+
+.user-delete:hover {
+    background-color: #F5F5F5;
+}

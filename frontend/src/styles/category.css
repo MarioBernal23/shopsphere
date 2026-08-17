@@ -1,0 +1,119 @@
+.category {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 30px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+
+.category h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 500;
+    color: #111111;
+}
+
+
+.category-actions {
+    display: flex;
+    gap: 10px;
+}
+
+
+.category-actions button {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 200ms;
+}
+
+
+.category-edit {
+    background-color: #111111;
+    color: #FFFFFF;
+    border: none;
+}
+
+
+.category-edit:hover {
+    background-color: #333333;
+}
+
+
+.category-delete {
+    background-color: #FFFFFF;
+    color: #111111;
+    border: 1px solid #DDDDDD;
+}
+
+
+.category-delete:hover {
+    background-color: #F5F5F5;
+}
+
+
+.category form {
+    grid-column: 1 / -1;
+    display: flex;
+    gap: 15px;
+    padding-top: 20px;
+    border-top: 1px solid #DDDDDD;
+}
+
+
+.category form input {
+    flex: 1;
+    padding: 10px 12px;
+    background-color: #FFFFFF;
+    color: #111111;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+}
+
+
+.category form input:focus {
+    border-color: #999999;
+}
+
+
+.category form button {
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+
+.category form button[type="submit"] {
+    background-color: #111111;
+    color: #FFFFFF;
+    border: none;
+}
+
+
+.category form button[type="submit"]:hover {
+    background-color: #333333;
+}
+
+
+.category form button[type="button"] {
+    background-color: #FFFFFF;
+    color: #111111;
+    border: 1px solid #DDDDDD;
+}
+
+
+.category form button[type="button"]:hover {
+    background-color: #F5F5F5;
+}

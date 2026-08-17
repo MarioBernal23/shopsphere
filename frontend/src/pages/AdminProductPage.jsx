@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import productService from "../services/productService";
 import ProductAdmin from "../components/ProductAdmin";
 import categoryService from "../services/categoryService";
+import "../styles/admin-product-page.css"
 
 function AdminProductPage() {
     const [products, setProducts] = useState([]);
@@ -67,11 +68,11 @@ function AdminProductPage() {
             setProducts(products);
         }
         return (
-            <div>
-                <h2>Gestionar productos</h2>
+            <div className="admin-products-page">
+                <h2>Manage products</h2>
 
                 <button onClick={() => setCreating(true)}>
-                    Crear producto
+                    Create product
                 </button>
                 {
                 creating && (
@@ -79,14 +80,14 @@ function AdminProductPage() {
 
                         <input
                             type="text"
-                            placeholder="Nombre"
+                            placeholder="Name"
                             value={name}
                             onChange={(event) => setName(event.target.value)}
                         />
 
                         <input
                             type="text"
-                            placeholder="Descripcion"
+                            placeholder="Description"
                             value={description}
                             onChange={(event) => setDescription(event.target.value)}
                         />
@@ -100,14 +101,14 @@ function AdminProductPage() {
 
                         <input
                             type="text"
-                            placeholder="Imagen"
+                            placeholder="Image"
                             value={image}
                             onChange={(event) => setImage(event.target.value)}
                         />
 
                         <input
                             type="number"
-                            placeholder="stock"
+                            placeholder="Stock"
                             value={stock}
                             onChange={(event) => setStock(event.target.value)}
                         />
@@ -116,7 +117,7 @@ function AdminProductPage() {
                             value={categoryId}
                             onChange={(event) => setCategoryId(event.target.value)}
                         >
-                            <option value="">Selecciona una categoría</option>
+                            <option value="">Select a category</option>
 
                             {
                                 categories.map(category => (
@@ -131,14 +132,14 @@ function AdminProductPage() {
                         </select>
 
                         <button type="submit">
-                            Crear
+                            Create
                         </button>
 
                         <button
                             type="button"
                             onClick={() => setCreating(false)}
                         >
-                            Cancelar
+                            Cancel
                         </button>
 
                     </form>

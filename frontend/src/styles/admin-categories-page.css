@@ -1,0 +1,103 @@
+.admin-categories-page {
+    width: 100%;
+}
+
+
+.admin-categories-page h2 {
+    font-size: 36px;
+    font-weight: 500;
+    color: #111111;
+    margin: 0 0 30px;
+    position: relative;
+}
+
+
+.admin-categories-page h2::after {
+    content: "";
+    display: block;
+    width: 240px;
+    height: 2px;
+    background-color: #DDDDDD;
+    margin-top: 6px;
+}
+
+
+.admin-categories-page > button {
+    padding: 12px 24px;
+    margin-bottom: 30px;
+    background-color: #111111;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 200ms;
+    cursor: pointer;
+}
+
+
+.admin-categories-page > button:hover {
+    background-color: #333333;
+}
+
+
+.admin-categories-page form {
+    display: flex;
+    gap: 15px;
+    max-width: 600px;
+    padding: 25px;
+    margin-bottom: 30px;
+    background-color: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 10px;
+}
+
+
+.admin-categories-page form input {
+    flex: 1;
+    padding: 12px 14px;
+    background-color: #FFFFFF;
+    color: #111111;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+}
+
+
+.admin-categories-page form input:focus {
+    border-color: #999999;
+}
+
+
+.admin-categories-page form button {
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+
+.admin-categories-page form button[type="submit"] {
+    background-color: #111111;
+    color: #FFFFFF;
+    border: none;
+}
+
+
+.admin-categories-page form button[type="submit"]:hover {
+    background-color: #333333;
+}
+
+
+.admin-categories-page form button[type="button"] {
+    background-color: #FFFFFF;
+    color: #111111;
+    border: 1px solid #DDDDDD;
+}
+
+
+.admin-categories-page form button[type="button"]:hover {
+    background-color: #F5F5F5;
+}

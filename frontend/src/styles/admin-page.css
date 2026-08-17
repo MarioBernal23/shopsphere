@@ -1,0 +1,42 @@
+.admin-page {
+    width: 100%;
+}
+
+
+.admin-page h2 {
+    font-size: 36px;
+    font-weight: 500;
+    color: #111111;
+    margin: 0 0 30px;
+    position: relative;
+}
+
+
+.admin-page h2::after {
+    content: "";
+    display: block;
+    width: 240px;
+    height: 2px;
+    background-color: #DDDDDD;
+    margin-top: 6px;
+}
+
+
+.admin-page a {
+    display: block;
+    padding: 20px 30px;
+    margin: 0 0 20px;
+    background-color: #FFFFFF;
+    color: #111111;
+    border: 1px solid #DDDDDD;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 200ms;
+}
+
+
+.admin-page a:hover {
+    background-color: #F5F5F5;
+}

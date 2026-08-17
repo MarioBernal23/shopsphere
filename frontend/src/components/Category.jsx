@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../styles/category.css"
 
 function Category({ category, onDelete, onUpdate }) {
 
@@ -16,16 +17,24 @@ function Category({ category, onDelete, onUpdate }) {
     }
 
     return (
-        <div>
+        <div className="category">
             <h3>{category.name}</h3>
 
-            <button onClick={() => setEditing(true)}>
-                Editar
-            </button>
+            <div className="category-actions">
+                <button
+                    className="category-edit"
+                    onClick={() => setEditing(true)}
+                >
+                    Edit
+                </button>
 
-            <button onClick={() => onDelete(category.id)}>
-                Eliminar
-            </button>
+                <button
+                    className="category-delete"
+                    onClick={() => onDelete(category.id)}
+                >
+                    Delete
+                </button>
+            </div>
 
             {
                 editing && (
@@ -37,14 +46,14 @@ function Category({ category, onDelete, onUpdate }) {
                         />
 
                         <button type="submit">
-                            Guardar
+                            Save
                         </button>
 
                         <button
                             type="button"
                             onClick={() => setEditing(false)}
                         >
-                            Cancelar
+                            Cancel
                         </button>
 
                     </form>

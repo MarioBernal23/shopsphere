@@ -1,0 +1,142 @@
+.admin-product {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr auto;
+    align-items: center;
+    gap: 25px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+
+.admin-product-info h3 {
+    margin: 0 0 8px;
+    font-size: 20px;
+    font-weight: 500;
+    color: #111111;
+}
+
+
+.admin-product-info p {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 400;
+    color: #777777;
+}
+
+
+.admin-product-price,
+.admin-product-stock,
+.admin-product-category {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 400;
+    color: #111111;
+}
+
+
+.admin-product-actions {
+    display: flex;
+    gap: 10px;
+}
+
+
+.admin-product-actions button {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 200ms;
+    white-space: nowrap;
+}
+
+
+.admin-product-edit {
+    background-color: #111111;
+    color: #FFFFFF;
+    border: none;
+}
+
+
+.admin-product-edit:hover {
+    background-color: #333333;
+}
+
+
+.admin-product-delete {
+    background-color: #FFFFFF;
+    color: #111111;
+    border: 1px solid #DDDDDD;
+}
+
+
+.admin-product-delete:hover {
+    background-color: #F5F5F5;
+}
+
+
+.admin-product form {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    padding-top: 20px;
+    border-top: 1px solid #DDDDDD;
+}
+
+
+.admin-product form input,
+.admin-product form select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 12px;
+    background-color: #FFFFFF;
+    color: #111111;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+}
+
+
+.admin-product form input:focus,
+.admin-product form select:focus {
+    border-color: #999999;
+}
+
+
+.admin-product form button {
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+
+.admin-product form button[type="submit"] {
+    background-color: #111111;
+    color: #FFFFFF;
+    border: none;
+}
+
+
+.admin-product form button[type="submit"]:hover {
+    background-color: #333333;
+}
+
+
+.admin-product form button[type="button"] {
+    background-color: #FFFFFF;
+    color: #111111;
+    border: 1px solid #DDDDDD;
+}
+
+
+.admin-product form button[type="button"]:hover {
+    background-color: #F5F5F5;
+}

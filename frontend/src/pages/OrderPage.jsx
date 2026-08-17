@@ -18,7 +18,7 @@ function OrderPage() {
 
     return (
         <div className="order-page">
-            <h2>Mis pedidos</h2>
+            <h2>My orders</h2>
             {
                 orders.map(order => (
                     <Order

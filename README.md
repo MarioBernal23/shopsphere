@@ -76,5 +76,5 @@ ShopSphere was created as a learning project to practice building a complete web
 
 **Completed**
 
-ShopSphere is considered a completed personal learning project. Further development may be done in future if new ideas arise.
+ShopSphere is a completed personal learning project. I may continue developing it in the future if I have new ideas.
 
